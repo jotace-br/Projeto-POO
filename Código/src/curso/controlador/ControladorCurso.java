@@ -46,14 +46,24 @@ public class ControladorCurso {
 		}
 	}
 
-	public boolean removerCurso(int posicao) {
-		listarCurso();
-		//terá que pedir a posição desejada no menu
-		if(posicao <= cursoExistente.length) {
-			cursoExistente[posicao] = null;
-			return true;
+	public boolean removerCurso(String curso) {
+		for(int i = 0; i < cursoExistente.length;i++) {
+			Curso procurarCurso = cursoExistente[i];
+			if(procurarCurso != null && procurarCurso.getNome()==curso) {
+				for(int j=0; j<cursoExistente.length;j++) {
+					cursoExistente[i]=cursoExistente[j];
+					if(j == (cursoExistente.length-1)) {
+						cursoExistente[j]=null;
+					}
+
+				}
+				this.qntCurso--;
+				return true;
+			}
+
 		}
 		return false;
 	}
+
 
 }
