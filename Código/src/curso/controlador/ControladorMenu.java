@@ -13,6 +13,8 @@ public class ControladorMenu {
 		System.out.println("4º Opção: Participar de um evento.");
 		//mais opções no futuro...
 		System.out.println("5º Opção: Sair.");
+		System.out.println();
+		System.out.print("Digite a opção desejada:");
 		return inputOpcao.nextInt();
 	}
 
@@ -25,6 +27,8 @@ public class ControladorMenu {
 		System.out.println("5º Opção: Buscar um curso existente.");
 		System.out.println("6º Opção: Listar todos os cursos.");
 		System.out.println("7º Opção: Sair.");
+		System.out.println();
+		System.out.print("Digite a opção desejada:");
 		return inputOpcao.nextInt();
 	}
 
@@ -37,6 +41,8 @@ public class ControladorMenu {
 		System.out.println("5º Opção: Buscar um evento existente.");
 		System.out.println("6º Opção: Listar todos os eventos.");
 		System.out.println("7º Opção: Sair.");
+		System.out.println();
+		System.out.print("Digite a opção desejada:");
 		return inputOpcao.nextInt();
 	}
 }
