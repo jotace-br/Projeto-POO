@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class ControladorMenu {
 	Scanner inputOpcao = new Scanner(System.in);
+	ControladorCurso controladorCurso;
 	
 	public int exibirMenuPrincipal() {
 		System.out.println("-- Menu principal --");
@@ -31,9 +32,14 @@ public class ControladorMenu {
 		System.out.print("Digite a opção desejada:");
 		return inputOpcao.nextInt();
 	}
+	
+	public int adicionarCursoMenuCursos(int quantidadeDeCursos) {
+		controladorCurso = new ControladorCurso(quantidadeDeCursos);
+		return quantidadeDeCursos;
+	}
 
 	public int exibirMenuEventos() {
-		System.out.println("-- Menu de cursos --");
+		System.out.println("-- Menu de eventos --");
 		System.out.println("1º Opção: Adicionar quantidade limite de eventos.");
 		System.out.println("2º Opção: Adicionar um novo evento.");
 		System.out.println("3º Opção: Editar um evento existente.");

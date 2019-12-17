@@ -18,7 +18,6 @@ public class Menu {
 		String password;
 
 		ControladorCurso controladorCurso = null;
-		int quantidadeDeCursos;
 
 		ControladorMenu controladorMenu = new ControladorMenu();
 
@@ -38,10 +37,10 @@ public class Menu {
 					opcaoSelecionadaMenuCursos = controladorMenu.exibirMenuCursos();
 					switch (opcaoSelecionadaMenuCursos) {
 					case 1:
-						System.out.print("Digite a quantidade limite de cursos: ");
-						quantidadeDeCursos = input.nextInt();
-						controladorCurso = new ControladorCurso(quantidadeDeCursos);
-						System.out.println("Quantidade definida com sucesso!");
+						System.out.println("Digite a quantidade limite de cursos: ");
+						int quantidadeDeCursos = input.nextInt();
+						controladorMenu.adicionarCursoMenuCursos(quantidadeDeCursos);
+						System.out.format("\n Quantidade definida com sucesso!");
 						break;
 					case 2:
 						do {
@@ -83,6 +82,7 @@ public class Menu {
 							System.out.println();
 							System.out.print("Deseja adicionar outro curso?: [S/N]");
 						} while(opcaoFazerNovamente.equalsIgnoreCase("S"));
+						admin.deslogar();
 						break;
 					case 3:
 						
