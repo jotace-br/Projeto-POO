@@ -46,20 +46,37 @@ public class Menu {
 						try {
 							do {
 								controladorMenu.adicionarCurso();
-								System.out.println("Curso adicionado!");
-								System.out.println();
-								System.out.print("Deseja adicionar outro curso?: [S/N]");
-								opcaoFazerNovamente = input.nextLine();
+								if(controladorMenu.adicionarCurso()) {
+									System.out.println("Curso adicionado!");
+								} else {
+									System.out.println("Não foi possível adicionar o curso.");
+								}
 							} while(opcaoFazerNovamente.equalsIgnoreCase("S"));
 						} catch (Exception e) {
-							System.out.format("Não foi possível adicionar o curso.\n");
+							System.out.println("Não foi possível adicionar o curso.");
+						} finally {
+							System.out.println();
+							System.out.print("Deseja adicionar outro curso?: [S/N]");
+							opcaoFazerNovamente = input.nextLine();
 						}
 						admin.deslogar();
 						System.out.println(input.nextLine());
 						break;
 					case 3:
-
-					default:
+						try {
+							controladorMenu.editarCurso();
+							if(controladorMenu.editarCurso()) {
+								System.out.println("Curso editado com sucesso!");
+							} else {
+								System.out.println("Não foi possível adicionar o curso.");
+							}
+						} catch (Exception e) {
+							System.out.println("Não foi possível adicionar o curso.");
+						} finally {
+							System.out.println();
+						}
+						break;
+					case 4:
 						break;
 
 					}

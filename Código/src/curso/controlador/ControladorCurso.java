@@ -29,6 +29,7 @@ public class ControladorCurso {
 	}
 
 	public boolean editarCurso(String buscarCurso, String novoCurso) {
+		listarCurso();
 		Curso procurarCurso = this.buscarCurso(buscarCurso);
 		if(procurarCurso != null) {
 			procurarCurso.setNome(novoCurso);

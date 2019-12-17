@@ -83,6 +83,20 @@ public class ControladorMenu {
 			return false;
 		}
 	}
+	
+	public boolean editarCurso() {
+		try {
+			System.out.print("Digite o nome do curso que deseja editar: ");
+			String buscarCurso = input.nextLine();
+			
+			System.out.print("Digite o nome do novo curso: ");
+			String novoCurso = input.nextLine();
+			controladorCurso.editarCurso(buscarCurso, novoCurso);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	public int exibirMenuEventos() {
 		System.out.println("-- Menu de eventos --");
