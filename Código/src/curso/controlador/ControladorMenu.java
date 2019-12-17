@@ -2,10 +2,15 @@ package curso.controlador;
 
 import java.util.Scanner;
 
+import curso.modelo.Curso;
+import curso.modelo.Professor;
+
 public class ControladorMenu {
 	Scanner inputOpcao = new Scanner(System.in);
+	Scanner input = new Scanner(System.in);
+
 	ControladorCurso controladorCurso;
-	
+
 	public int exibirMenuPrincipal() {
 		System.out.println("-- Menu principal --");
 		System.out.println("1º Opção: Ir ao menu de opções dos cursos. [DESENVOLVEDOR]");
@@ -32,10 +37,51 @@ public class ControladorMenu {
 		System.out.print("Digite a opção desejada:");
 		return inputOpcao.nextInt();
 	}
-	
-	public int adicionarCursoMenuCursos(int quantidadeDeCursos) {
+
+	public int adicionarQuantidadeMenuCursos(int quantidadeDeCursos) {
 		controladorCurso = new ControladorCurso(quantidadeDeCursos);
 		return quantidadeDeCursos;
+	}
+
+	public boolean adicionarCurso() {
+		try {
+			System.out.print("Digite o ID do curso: ");
+			String idCurso = input.nextLine();
+
+			System.out.print("Digite o nome do curso: ");
+			String nomeCurso = input.nextLine();
+
+			System.out.format("\nVamos para o professor!\n");
+
+			System.out.print("Digite o nome do professor: ");
+			String nomeProfessor = input.nextLine();
+
+			System.out.print("Digite o RG do professor: ");
+			String rgProfessor = input.nextLine();
+
+			System.out.print("Digite o telefone do professor: ");
+			String telefoneProfessor = input.nextLine();
+
+			System.out.print("Digite o cargo do professor: ");
+			String cargoProfessor = input.nextLine();
+
+			System.out.print("Digite a disciplina que o professor leciona: ");
+			String disciplinaProfessor = input.nextLine();
+
+			System.out.format("\nUfa! Agora digite a descrição do curso: ");
+			String descricaoCurso = input.nextLine();
+
+			System.out.print("Digite a disciplina do curso: ");
+			String disciplinaCurso = input.nextLine();
+
+			Professor professor = new Professor(nomeProfessor, rgProfessor, telefoneProfessor, cargoProfessor, disciplinaProfessor);
+			Curso curso = new Curso(idCurso, nomeCurso, professor, descricaoCurso, disciplinaCurso);
+			controladorCurso.adicionarCurso(curso);
+			return true;
+			
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	public int exibirMenuEventos() {
