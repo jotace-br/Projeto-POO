@@ -10,40 +10,36 @@ public class Usuario {
 	public Usuario() {
 		this.login = "ADMGeral";
 		this.senha = "123";
-	}
-
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+		this.administradorLogin = false;
+		this.administradorSenha = false;
+		this.administrador = false;
 	}
 
 	public boolean checkUser(String loginUser) {
-		if(this.login.equals(loginUser)) {
-			return true == administradorLogin;
+		if(login.equals(loginUser)) {
+			administradorLogin = true;
 		}
-		return false;
+		return administradorLogin;
 	}
 
 	public boolean checkSenha(String loginSenha) {
-		if(this.login.equals(loginSenha)) {
-			return true == administradorSenha;
+		if(senha.equals(loginSenha)) {
+			administradorSenha = true;
 		}
-		return false;
+		return administradorSenha;
 	}
 
-	public boolean logado() {
+	public boolean isLogado() {
 		if(administradorLogin && administradorSenha) {
-			return true == administrador;
+			administrador = true;
 		}
-		return false;
+		return administrador;
+	}
+	
+	public void deslogar() {
+		administradorLogin = false;
+		administradorSenha = false;
+		administrador = false;
 	}
 
 }

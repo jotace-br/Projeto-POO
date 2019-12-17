@@ -5,20 +5,30 @@ public class Curso {
 	private Professor professor;
 	private String descricao;
 	private String disciplina;
-	private String[] aluno;
-	private int qntCursos;
+	private String[] ListaNomeDosAlunos;
+	private int indiceAtual;
+	private final int QNTALUNOS = 30;
 	
-	public Curso(String iD, String nome, Professor professor, String descricao, String disciplina, String[] aluno,
-			int qntCursos) {
+	public Curso(String iD, String nome, Professor professor, String descricao, String disciplina) {
 		super();
 		ID = iD;
 		this.nome = nome;
 		this.professor = professor;
 		this.descricao = descricao;
 		this.disciplina = disciplina;
-		this.aluno = aluno;
-		this.qntCursos = qntCursos;
+		this.ListaNomeDosAlunos = new String[QNTALUNOS];
+		this.indiceAtual = 0;
 	}
+	
+	public boolean adicionarAluno(String nome) {
+		if(nome.equals("") && QNTALUNOS < ListaNomeDosAlunos.length) {
+			ListaNomeDosAlunos[indiceAtual] = nome;
+			indiceAtual++;
+			return true;
+		}
+		return false;
+	}
+	
 	public String getID() {
 		return ID;
 	}
@@ -50,16 +60,11 @@ public class Curso {
 		this.disciplina = disciplina;
 	}
 	public String[] getAluno() {
-		return aluno;
+		return ListaNomeDosAlunos;
 	}
 	public void setAluno(String[] aluno) {
-		this.aluno = aluno;
+		this.ListaNomeDosAlunos = aluno;
 	}
-	public int getQntCursos() {
-		return qntCursos;
-	}
-	public void setQntCursos(int qntCursos) {
-		this.qntCursos = qntCursos;
-	}
+
 	
 }
