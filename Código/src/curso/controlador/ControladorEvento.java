@@ -19,7 +19,7 @@ public class ControladorEvento {
 
 	public Evento buscarEvento(String buscarEvento) {
 		for (Evento procurarEvento : eventoExistente) {
-			if(procurarEvento != null && procurarEvento.getNome() == buscarEvento) {
+			if(procurarEvento != null && procurarEvento.getNome().equals(buscarEvento)) {
 				return procurarEvento;
 			}
 		}
@@ -35,13 +35,23 @@ public class ControladorEvento {
 		return false;
 	}
 
-	public void listar() {
+	public void listarEvento() {
 		for (Evento eventos : eventoExistente) {
 			if(eventos != null) {
 				System.out.println(eventos);
 			}
 			break;
 		}
+	}
+	
+	public boolean removerEvento(int posicao) {
+		listarEvento();
+		//terá que pedir a posição desejada no menu
+		if(posicao <= eventoExistente.length) {
+			eventoExistente[posicao] = null;
+			return true;
+		}
+		return false;
 	}
 
 

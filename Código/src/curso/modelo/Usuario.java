@@ -3,13 +3,15 @@ package curso.modelo;
 public class Usuario {
 	private String login;
 	private String senha;
-	
-	public Usuario(String login, String senha) {
-		super();
-		this.login = login;
-		this.senha = senha;
+	private boolean administrador;
+	private boolean administradorLogin;
+	private boolean administradorSenha;
+
+	public Usuario() {
+		this.login = "ADMGeral";
+		this.senha = "123";
 	}
-	
+
 	public String getLogin() {
 		return login;
 	}
@@ -22,5 +24,26 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
+	public boolean checkUser(String loginUser) {
+		if(this.login.equals(loginUser)) {
+			return true == administradorLogin;
+		}
+		return false;
+	}
+
+	public boolean checkSenha(String loginSenha) {
+		if(this.login.equals(loginSenha)) {
+			return true == administradorSenha;
+		}
+		return false;
+	}
+
+	public boolean logado() {
+		if(administradorLogin && administradorSenha) {
+			return true == administrador;
+		}
+		return false;
+	}
+
 }

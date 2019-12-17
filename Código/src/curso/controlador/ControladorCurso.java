@@ -21,7 +21,7 @@ public class ControladorCurso {
 
 	public Curso buscarCurso(String buscarCurso) {
 		for(Curso procurarCurso: cursoExistente) {
-			if(procurarCurso != null && procurarCurso.getNome()== buscarCurso) {
+			if(procurarCurso != null && procurarCurso.getNome().equals(buscarCurso)) {
 				return procurarCurso;
 			}
 		}
@@ -37,24 +37,23 @@ public class ControladorCurso {
 		return false;
 	}
 
-	public void listar() {
+	public void listarCurso() {
 		for(Curso cursos: cursoExistente) {
 			if(cursos != null) {
 				System.out.println(cursos);
 			}
 			break;
-
 		}
-
 	}
 
-
-
-
-
-
-
-
-
+	public boolean removerCurso(int posicao) {
+		listarCurso();
+		//terá que pedir a posição desejada no menu
+		if(posicao <= cursoExistente.length) {
+			cursoExistente[posicao] = null;
+			return true;
+		}
+		return false;
+	}
 
 }
