@@ -29,7 +29,6 @@ public class ControladorCurso {
 	}
 
 	public boolean editarCurso(String buscarCurso, String novoCurso) {
-		listarCurso();
 		Curso procurarCurso = this.buscarCurso(buscarCurso);
 		if(procurarCurso != null) {
 			procurarCurso.setNome(novoCurso);
@@ -41,22 +40,40 @@ public class ControladorCurso {
 	public void listarCurso() {
 		for(Curso cursos: cursoExistente) {
 			if(cursos != null) {
-				System.out.println(cursos);
+				System.out.println("-----------------------------------------");
+				System.out.println("ID do curso: " + cursos.getID());
+				System.out.println("Nome do curso: " + cursos.getNome());
+				System.out.println("Nome do professor: " + cursos.getProfessor().getNome());
+				System.out.println("Descrição do curso: " + cursos.getDescricao());
+				System.out.println("Disciplina: " + cursos.getDisciplina());
+				System.out.println("-----------------------------------------");
 			}
 			break;
 		}
 	}
+	
+	public boolean existeCurso() {
+		boolean encontrou = false;
+		for (Curso curso : cursoExistente) {
+			if (curso != null) {
+				encontrou = true;	
+			} else {
+				System.out.println("Não há cursos disponíveis.");
+				encontrou = false;
+			}
+		}
+		return encontrou;
+	}
 
 	public boolean removerCurso(String curso) {
-		for(int i = 0; i < cursoExistente.length;i++) {
+		for(int i = 0; i < cursoExistente.length; i++) {
 			Curso procurarCurso = cursoExistente[i];
-			if(procurarCurso != null && procurarCurso.getNome()==curso) {
-				for(int j=0; j<cursoExistente.length;j++) {
-					cursoExistente[i]=cursoExistente[j];
+			if(procurarCurso != null && procurarCurso.getNome().equals(curso)) {
+				for(int j = 0; j < cursoExistente.length; j++) {
+					cursoExistente[i] = cursoExistente[j];
 					if(j == (cursoExistente.length-1)) {
-						cursoExistente[j]=null;
+						cursoExistente[j] = null;
 					}
-
 				}
 				this.qntCurso--;
 				return true;

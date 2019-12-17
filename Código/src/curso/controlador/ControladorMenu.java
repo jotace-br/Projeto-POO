@@ -9,7 +9,7 @@ public class ControladorMenu {
 	Scanner inputOpcao = new Scanner(System.in);
 	Scanner input = new Scanner(System.in);
 
-	ControladorCurso controladorCurso;
+	ControladorCurso controladorCurso = new ControladorCurso(0);
 
 	public int exibirMenuPrincipal() {
 		System.out.println("-- Menu principal --");
@@ -78,24 +78,59 @@ public class ControladorMenu {
 			Curso curso = new Curso(idCurso, nomeCurso, professor, descricaoCurso, disciplinaCurso);
 			controladorCurso.adicionarCurso(curso);
 			return true;
-			
+
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean editarCurso() {
+		if(!controladorCurso.existeCurso()){
+			System.out.println("Não há cursos disponíveis para editar.");
+		} else {
+			try {
+				System.out.println("-- Cursos disponíveis --");
+				controladorCurso.listarCurso();
+				System.out.println("------------------------");
+				System.out.print("Digite o nome do curso que deseja editar: ");
+				String buscarCurso = input.nextLine();
+
+				System.out.print("Digite o nome do novo curso: ");
+				String novoCurso = input.nextLine();
+				controladorCurso.editarCurso(buscarCurso, novoCurso);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	public boolean removerCurso() {
+		try {
+			System.out.println("Digite o nome do curso que deseja remover: ");
+			String curso = input.nextLine();
+			controladorCurso.removerCurso(curso);
+			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
 	
-	public boolean editarCurso() {
+	public boolean buscarCurso() {
 		try {
-			System.out.print("Digite o nome do curso que deseja editar: ");
+			System.out.println("Digite o nome do curso para buscá-lo: ");
 			String buscarCurso = input.nextLine();
-			
-			System.out.print("Digite o nome do novo curso: ");
-			String novoCurso = input.nextLine();
-			controladorCurso.editarCurso(buscarCurso, novoCurso);
+			controladorCurso.buscarCurso(buscarCurso);
 			return true;
 		} catch (Exception e) {
-			return false;
+			System.out.println("Não foi possível achar o curso.");
 		}
+		return false;
+	}
+	
+	public void listarCurso() {
+		controladorCurso.listarCurso();
 	}
 
 	public int exibirMenuEventos() {

@@ -45,7 +45,6 @@ public class Menu {
 					case 2:
 						try {
 							do {
-								controladorMenu.adicionarCurso();
 								if(controladorMenu.adicionarCurso()) {
 									System.out.println("Curso adicionado!");
 								} else {
@@ -64,23 +63,53 @@ public class Menu {
 						break;
 					case 3:
 						try {
-							controladorMenu.editarCurso();
 							if(controladorMenu.editarCurso()) {
 								System.out.println("Curso editado com sucesso!");
 							} else {
-								System.out.println("Não foi possível adicionar o curso.");
+								System.out.println("Não foi possível editar o curso.");
 							}
 						} catch (Exception e) {
-							System.out.println("Não foi possível adicionar o curso.");
+							System.out.println("Não foi possível editar o curso.");
 						} finally {
 							System.out.println();
 						}
 						break;
 					case 4:
+						try {
+							if(controladorMenu.removerCurso()) {
+								System.out.println("Curso removido com sucesso!");
+							} else {
+								System.out.println("Não foi possível remover o curso.");
+							}
+						} catch (Exception e) {
+							System.out.println("Não foi possível remover o curso.");
+						} finally {
+							System.out.println();
+						}
 						break;
-
+					case 5:
+						try {
+							if(controladorMenu.buscarCurso()) {
+								System.out.println("Curso encontrados.");
+							} else {
+								System.out.println("Nenhum curso encontrado.");
+							}
+						} catch (Exception e) {
+							System.out.println("Nenhum curso encontrado.");
+						} finally {
+							System.out.println();
+						}
+						break;
+					case 6:
+						System.out.println("Cursos existentes: ");
+						System.out.println();
+						controladorMenu.listarCurso();
+						System.out.println("-------------------");
+						break;
+					case 7:
+						System.out.println("Voltando para o menu principal...");
+						break;
 					}
-
 				} else {
 					System.out.format("Impossível entrar sem ser administrador!\n");
 				}
@@ -97,7 +126,8 @@ public class Menu {
 			}
 
 		} while (opcaoSelecionadaMenuPrincipal != opcaoSairMenuPrincipal);
-	}}	 
+	}
+}	 
 
 
 
