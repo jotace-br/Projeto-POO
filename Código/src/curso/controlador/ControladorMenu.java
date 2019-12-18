@@ -66,9 +66,6 @@ public class ControladorMenu {
 			System.out.print("Digite o telefone do professor: ");
 			String telefoneProfessor = input.nextLine();
 
-			System.out.print("Digite o cargo do professor: ");
-			String cargoProfessor = input.nextLine();
-
 			System.out.print("Digite a disciplina que o professor leciona: ");
 			String disciplinaProfessor = input.nextLine();
 
@@ -78,7 +75,7 @@ public class ControladorMenu {
 			System.out.print("Digite a disciplina do curso: ");
 			String disciplinaCurso = input.nextLine();
 
-			Professor professor = new Professor(nomeProfessor, rgProfessor, telefoneProfessor, cargoProfessor, disciplinaProfessor);
+			Professor professor = new Professor(nomeProfessor, rgProfessor, telefoneProfessor, disciplinaProfessor);
 			Curso curso = new Curso(idCurso, nomeCurso, professor, descricaoCurso, disciplinaCurso);
 			controladorCurso.adicionarCurso(curso);
 			return true;
