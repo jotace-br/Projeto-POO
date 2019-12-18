@@ -2,8 +2,9 @@ package curso.controlador;
 import curso.modelo.Curso;
 
 public class ControladorCurso {
-	private Curso[] cursoExistente;
+	Curso[] cursoExistente;
 	private int qntCurso;
+	Curso curso = new Curso(null, null, null, null, null);
 
 	public ControladorCurso(int capacidade){
 		this.cursoExistente = new Curso[capacidade];
@@ -38,20 +39,22 @@ public class ControladorCurso {
 	}
 
 	public void listarCurso() {
+		int contadora = 1;
 		for(Curso cursos: cursoExistente) {
 			if(cursos != null) {
 				System.out.println("-----------------------------------------");
+				System.out.format("%dº Curso:\n", contadora);
 				System.out.println("ID do curso: " + cursos.getID());
 				System.out.println("Nome do curso: " + cursos.getNome());
 				System.out.println("Nome do professor: " + cursos.getProfessor().getNome());
 				System.out.println("Descrição do curso: " + cursos.getDescricao());
 				System.out.println("Disciplina: " + cursos.getDisciplina());
-				System.out.println("-----------------------------------------");
+				contadora-=-1;
 			}
-			break;
 		}
+
 	}
-	
+
 	public boolean existeCurso() {
 		boolean encontrou = false;
 		for (Curso curso : cursoExistente) {
@@ -82,6 +85,22 @@ public class ControladorCurso {
 		}
 		return false;
 	}
+	
+	public void listarAlunosCadastrados() {
+		for (int i = 0; i < curso.getListaNomeDosAlunos().length; i++) {
+			if(curso.getListaNomeDosAlunos()[i] != null) {
+				System.out.println(curso.getListaNomeDosAlunos()[i].charAt(0));
+				System.out.println("-----------------------------------------");
+			}
+		}
+	}
 
+	public Curso[] getCursoExistente() {
+		return cursoExistente;
+	}
+
+	public int getQntCurso() {
+		return qntCurso;
+	}
 
 }

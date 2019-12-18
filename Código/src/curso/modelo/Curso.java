@@ -7,8 +7,8 @@ public class Curso {
 	private String disciplina;
 	private String[] ListaNomeDosAlunos;
 	private int indiceAtual;
-	private final int QNTALUNOS = 30;
-	
+	private int QNTALUNOS = 30;
+
 	public Curso(String iD, String nome, Professor professor, String descricao, String disciplina) {
 		super();
 		ID = iD;
@@ -19,7 +19,7 @@ public class Curso {
 		this.ListaNomeDosAlunos = new String[QNTALUNOS];
 		this.indiceAtual = 0;
 	}
-	
+
 	public boolean adicionarAluno(String nome) {
 		if(nome.equals("") && QNTALUNOS < ListaNomeDosAlunos.length) {
 			ListaNomeDosAlunos[indiceAtual] = nome;
@@ -28,7 +28,7 @@ public class Curso {
 		}
 		return false;
 	}
-	
+
 	public String getID() {
 		return ID;
 	}
@@ -59,12 +59,28 @@ public class Curso {
 	public void setDisciplina(String disciplina) {
 		this.disciplina = disciplina;
 	}
-	public String[] getAluno() {
+	public String[] getAlunoVetor() {
 		return ListaNomeDosAlunos;
 	}
-	public void setAluno(String[] aluno) {
+	public void setAlunoVetor(String[] aluno) {
 		this.ListaNomeDosAlunos = aluno;
 	}
 
-	
+	public String setAluno(String participar) {
+		ListaNomeDosAlunos[QNTALUNOS] = participar;
+		QNTALUNOS--;
+		return participar;
+	}
+
+	public String[] getListaNomeDosAlunos() {
+		return ListaNomeDosAlunos;
+	}
+
+	public void setListaNomeDosAlunos(String[] listaNomeDosAlunos) {
+		ListaNomeDosAlunos = listaNomeDosAlunos;
+	}
+
+
+
+
 }

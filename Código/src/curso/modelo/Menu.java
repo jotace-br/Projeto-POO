@@ -41,11 +41,11 @@ public class Menu {
 								int quantidadeDeCursos = input.nextInt();
 								controladorMenu.adicionarQuantidadeMenuCursos(quantidadeDeCursos);
 								System.out.format("\n Quantidade definida com sucesso!\n");
-								admin.deslogar();
 								System.out.println(input.nextLine());
 							} catch (Exception e) {
-								System.out.println("Não foi possível definir um limite de curso.");
-							}					
+								System.err.println("Não foi possível definir um limite de curso.");
+							}
+							admin.deslogar();
 							break;
 						case 2:
 							try {
@@ -55,15 +55,17 @@ public class Menu {
 										System.out.println();
 										System.out.print("Deseja adicionar outro curso?: [S/N]");
 										opcaoFazerNovamente = input.nextLine();
+										System.out.println(input.nextLine());
 									} else {
 										System.out.println("Não foi possível adicionar o curso.");
+										opcaoFazerNovamente = "N";
+										System.out.println();
 									}
 								} while(opcaoFazerNovamente.equalsIgnoreCase("S"));
 							} catch (Exception e) {
-								System.out.println("Não foi possível adicionar o curso.");
+								System.err.println("Não foi possível adicionar o curso.");
 							}
 							admin.deslogar();
-							System.out.println(input.nextLine());
 							break;
 						case 3:
 							try {
@@ -73,8 +75,9 @@ public class Menu {
 									System.out.println("Não foi possível editar o curso.");
 								}
 							} catch (Exception e) {
-								System.out.println("Não foi possível editar o curso.");
+								System.err.println("Não foi possível editar o curso.");
 							}
+							admin.deslogar();
 							break;
 						case 4:
 							try {
@@ -84,8 +87,9 @@ public class Menu {
 									System.out.println("Não foi possível remover o curso.");
 								}
 							} catch (Exception e) {
-								System.out.println("Não foi possível remover o curso.");
+								System.err.println("Não foi possível remover o curso.");
 							}
+							admin.deslogar();
 							break;
 						case 5:
 							try {
@@ -95,10 +99,11 @@ public class Menu {
 									System.out.println("Nenhum curso encontrado.");
 								}
 							} catch (Exception e) {
-								System.out.println("Nenhum curso encontrado.");
+								System.err.println("Nenhum curso encontrado.");
 							} finally {
 								System.out.println();
 							}
+							admin.deslogar();
 							break;
 						case 6:
 							try {
@@ -108,18 +113,21 @@ public class Menu {
 								System.out.println("-------------------");
 								break;
 							} catch (Exception e) {
-								System.out.println("Não há cursos disponíveis.");
+								System.err.println("Não há cursos disponíveis.");
 							}
+							admin.deslogar();
 							break;
 						case 7:
 							System.out.println("Voltando para o menu principal...");
+							admin.deslogar();
 							break;
 						default:
 							System.out.println();
+							admin.deslogar();
 							break;
 						}
 					} else {
-						System.out.format("Impossível entrar sem ser administrador!\n");
+						System.err.format("Impossível entrar sem ser administrador!\n\n");
 					}
 					break;
 				case 2:
@@ -140,11 +148,12 @@ public class Menu {
 								int quantidadeDeEventos = input.nextInt();
 								controladorMenu.adicionarQuantidadeMenuEventos(quantidadeDeEventos);
 								System.out.format("\n Quantidade definida com sucesso!\n");
-								admin.deslogar();
 								System.out.println(input.nextLine());
 							} catch (Exception e) {
-								System.out.println("Não foi possível definir um limite de evento.");
+								System.err.println("Não foi possível definir um limite de evento.");
+								admin.deslogar();
 							}
+							admin.deslogar();
 							break;
 						case 2:
 							try {
@@ -152,17 +161,19 @@ public class Menu {
 									if(controladorMenu.adicionarEvento()) {
 										System.out.println("Evento adicionado!");
 										System.out.println();
-										System.out.print("Deseja adicionar outro evento?: [S/N]");
+										System.out.print("Deseja adicionar outro evento?: [S/N] ");
 										opcaoFazerNovamente = input.nextLine();
 									} else {
 										System.out.println("Não foi possível adicionar o evento.");
+										opcaoFazerNovamente = "N";
+										System.out.println();
 									}
 								} while(opcaoFazerNovamente.equalsIgnoreCase("S"));
 							} catch (Exception e) {
-								System.out.println("Não foi possível adicionar o evento.");
+								System.err.println("Não foi possível adicionar o evento.");
 							}
-							admin.deslogar();
 							System.out.println(input.nextLine());
+							admin.deslogar();
 							break;
 						case 3:
 							try {
@@ -172,8 +183,9 @@ public class Menu {
 									System.out.println("Não foi possível editar o evento.");
 								}
 							} catch (Exception e) {
-								System.out.println("Não foi possível editar o evento.");
+								System.err.println("Não foi possível editar o evento.");
 							}
+							admin.deslogar();
 							break;
 						case 4:
 							try {
@@ -183,8 +195,9 @@ public class Menu {
 									System.out.println("Não foi possível remover o evento.");
 								}
 							} catch (Exception e) {
-								System.out.println("Não foi possível remover o evneto.");
+								System.err.println("Não foi possível remover o evneto.");
 							}
+							admin.deslogar();
 							break;
 						case 5:
 							try {
@@ -194,8 +207,9 @@ public class Menu {
 									System.out.println("Nenhum evento encontrado.");
 								}
 							} catch (Exception e) {
-								System.out.println("Nenhum evento encontrado.");
+								System.err.println("Nenhum evento encontrado.");
 							}
+							admin.deslogar();
 							break;
 						case 6:
 							try {
@@ -204,19 +218,27 @@ public class Menu {
 								controladorMenu.listarCurso();
 								System.out.println("-------------------");
 							} catch (Exception e) {
-								System.out.println("Não há eventos disponíveis.");
+								System.err.println("Não há eventos disponíveis.");
 							}
+							admin.deslogar();
 							break;
 						case 7:
 							System.out.println("Voltando para o menu principal...");
+							admin.deslogar();
 							break;
 						default:
 							System.out.println();
+							admin.deslogar();
 							break;
 						}
+					} else {
+						System.err.format("Impossível entrar sem ser administrador!\n\n");
 					}
 					break;
-				case 3:
+				case 3: 
+					controladorMenu.participarCurso();
+					System.out.println("adicionado");
+					controladorMenu.listarAlunosCadastrados();
 					break;
 				case 4:
 					break;
