@@ -1,4 +1,5 @@
 package curso.controlador;
+import curso.modelo.Curso;
 import curso.modelo.Evento;
 
 public class ControladorEvento {
@@ -44,18 +45,34 @@ public class ControladorEvento {
 		}
 	}
 	
-	public boolean removerEvento(int posicao) {
-		listarEvento();
-		//terá que pedir a posição desejada no menu
-		if(posicao <= eventoExistente.length) {
-			eventoExistente[posicao] = null;
-			return true;
+	public boolean existeEvento() {
+		boolean encontrou = false;
+		for (Evento evento : eventoExistente) {
+			if (evento != null) {
+				encontrou = true;	
+			} else {
+				System.out.println("Não há eventos disponíveis.");
+				encontrou = false;
+			}
+		}
+		return encontrou;
+	}
+	
+	public boolean removerEvento(String evento) {
+		for(int i = 0; i < eventoExistente.length; i++) {
+			Evento procurarEvento = eventoExistente[i];
+			if(procurarEvento != null && procurarEvento.getNome().equals(evento)) {
+				for(int j = 0; j < eventoExistente.length; j++) {
+					eventoExistente[i] = eventoExistente[j];
+					if(j == (eventoExistente.length-1)) {
+						eventoExistente[j] = null;
+					}
+				}
+				this.qntEvento--;
+				return true;
+			}
 		}
 		return false;
 	}
-
-
-
-
 
 }

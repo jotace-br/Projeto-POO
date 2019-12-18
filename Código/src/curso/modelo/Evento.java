@@ -1,5 +1,4 @@
 package curso.modelo;
-import java.util.Date;
 
 public class Evento {
     private String id;
@@ -7,10 +6,10 @@ public class Evento {
     private Palestrante palestrante;
     private String descricao;
     private String organizadores;
-    private Date data;
+    private String data;
     private Endereco localizacao;
     
-	public Evento(String id, String nome, Palestrante palestrante, String descricao, String organizadores, Date data,
+	public Evento(String id, String nome, Palestrante palestrante, String descricao, String organizadores, String data,
 			Endereco localizacao) {
 		super();
 		this.id = id;
@@ -62,11 +61,11 @@ public class Evento {
 		this.organizadores = organizadores;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

@@ -3,6 +3,9 @@ package curso.controlador;
 import java.util.Scanner;
 
 import curso.modelo.Curso;
+import curso.modelo.Endereco;
+import curso.modelo.Evento;
+import curso.modelo.Palestrante;
 import curso.modelo.Professor;
 
 public class ControladorMenu {
@@ -10,6 +13,7 @@ public class ControladorMenu {
 	Scanner input = new Scanner(System.in);
 
 	ControladorCurso controladorCurso = new ControladorCurso(0);
+	ControladorEvento controladorEvento = new ControladorEvento(0);
 
 	public int exibirMenuPrincipal() {
 		System.out.println("-- Menu principal --");
@@ -146,4 +150,115 @@ public class ControladorMenu {
 		System.out.print("Digite a opção desejada:");
 		return inputOpcao.nextInt();
 	}
+	
+	public int adicionarQuantidadeMenuEventos(int quantidadeDeEventos) {
+		controladorEvento = new ControladorEvento(quantidadeDeEventos);
+		return quantidadeDeEventos;
+	}
+	
+	public boolean adicionarEvento() {
+		try {
+			System.out.print("Digite o ID do evento: ");
+			String idEvento = input.nextLine();
+
+			System.out.print("Digite o nome do evento: ");
+			String nomeEvento = input.nextLine();
+
+			System.out.format("\nVamos para o palestrante!\n");
+
+			System.out.print("Digite o nome do palestrante: ");
+			String nomePalestrante = input.nextLine();
+
+			System.out.print("Digite o RG do palestrante: ");
+			String rgPalestrante = input.nextLine();
+			
+			System.out.print("Digite o telefone do palestrante: ");
+			String telefonePalestrante = input.nextLine();
+
+			System.out.print("Digite o tema da palestra: ");
+			String temaPalestra = input.nextLine();
+
+			System.out.format("\nUfa! Agora digite a descrição do evento: ");
+			String descricaoEvento = input.nextLine();
+			
+			System.out.print("Digite o nome dos organizadores: ");
+			String organizadores = input.nextLine();
+			
+			System.out.print("Digite a data do evento: ");
+			String dataEvento = input.nextLine();
+			
+			System.out.format("\nAgora vamos para a localização!\n");
+			
+			System.out.print("Digite o endereço do evento: ");
+			String cepEnderecoEvento = input.nextLine();
+			
+			System.out.print("Digite o nome da rua do evento: ");
+			String ruaEnderecoEvento = input.nextLine();
+			
+			System.out.print("Digite o número do local do evento: ");
+			Long numeroEnderecoEvento = input.nextLong();
+
+			Palestrante palestrante = new Palestrante(nomePalestrante, rgPalestrante, telefonePalestrante, temaPalestra);
+			Endereco endereco = new Endereco(cepEnderecoEvento, ruaEnderecoEvento, numeroEnderecoEvento);
+			Evento evento = new Evento(idEvento, nomeEvento, palestrante, descricaoEvento, organizadores, dataEvento, endereco);
+			controladorEvento.adicionarEvento(evento);
+			return true;
+
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public boolean editarEvento() {
+		if(!controladorEvento.existeEvento()){
+			System.out.println("Não há cursos disponíveis para editar.");
+		} else {
+			try {
+				System.out.println("-- Eventos disponíveis --");
+				controladorEvento.listarEvento();
+				System.out.println("------------------------");
+				System.out.print("Digite o nome do curso que deseja editar: ");
+				String buscarEvento = input.nextLine();
+
+				System.out.print("Digite o nome do novo curso: ");
+				String novoEvento = input.nextLine();
+				controladorEvento.editarEvento(buscarEvento, novoEvento);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	public boolean removerEvento() {
+		try {
+			System.out.println("Digite o nome do curso que deseja remover: ");
+			String evento = input.nextLine();
+			controladorEvento.removerEvento(evento);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public boolean buscarEvento() {
+		try {
+			System.out.println("Digite o nome do curso para buscá-lo: ");
+			String buscarEvento = input.nextLine();
+			controladorEvento.buscarEvento(buscarEvento);
+			return true;
+		} catch (Exception e) {
+			System.out.println("Não foi possível achar o curso.");
+		}
+		return false;
+	}
+	
+	public void listarEvento() {
+		controladorEvento.listarEvento();
+	}
+
+
+
+	
 }

@@ -3,9 +3,9 @@ package curso.modelo;
 public class Endereco {
 	private String cep;
 	private String rua;
-	private int numero;
+	private long numero;
 	
-	public Endereco(String cep, String rua, int numero) {
+	public Endereco(String cep, String rua, long numero) {
 		super();
 		this.cep = cep;
 		this.rua = rua;
@@ -28,11 +28,11 @@ public class Endereco {
 		this.rua = rua;
 	}
 
-	public int getNumero() {
+	public long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(long numero) {
 		this.numero = numero;
 	}
 	
