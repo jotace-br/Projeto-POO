@@ -1,17 +1,19 @@
 package curso.modelo;
 
 public class Endereco {
+	//atributos do endereço
 	private String cep;
 	private String rua;
 	private long numero;
 	
+	//construtor do endereço
 	public Endereco(String cep, String rua, long numero) {
-		super();
 		this.cep = cep;
 		this.rua = rua;
 		this.numero = numero;
 	}
-
+	
+	//getters e setters
 	public String getCep() {
 		return cep;
 	}

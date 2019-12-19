@@ -1,18 +1,28 @@
 package curso.controlador;
-import curso.modelo.Curso;
+import curso.modelo.Endereco;
 import curso.modelo.Evento;
+import curso.modelo.Palestrante;
 
 public class ControladorEvento {
+	//atributos do controlador de evento
 	private Evento[] eventoExistente;
-	private int qntEvento;
+	private int quantidadeEvento;
+	private int contadora;
+	
+	//instanciação
+	Endereco editarEndereco;
+	Palestrante editarPalestrante;
 
+	//construtor do controlador de evento
 	public ControladorEvento(int capacidade) {
 		this.eventoExistente = new Evento[capacidade];
-		this.qntEvento = 0;
+		this.quantidadeEvento = 0;
+		this.contadora = 1;
 	}
 
+	//métodos do controlador de evento
 	public boolean adicionarEvento(Evento eventos) {
-		if(eventos != null && qntEvento < eventoExistente.length) {
+		if(eventos != null && quantidadeEvento < eventoExistente.length) {
 			return true;
 		}
 		return false;
@@ -27,10 +37,21 @@ public class ControladorEvento {
 		return null;
 	}
 
-	public boolean editarEvento(String buscarEvento, String novoEvento) {
-		Evento procurarEvento = this.buscarEvento(buscarEvento);
+	public boolean editarEvento(String buscarIdEvento, String novoEvento, String novaDescricao,
+							    String novoNomePalestrante, String novoRgPalestrante,
+							    String novoTelefonePalestrante, String novoTemaPalestra, 
+							    String ruaEndereco,String bairroEndereco, Long numeroEndereco) {
+		
+		Evento procurarEvento = this.buscarEvento(buscarIdEvento);
+		editarPalestrante = new Palestrante(novoNomePalestrante, novoRgPalestrante,
+										  novoTelefonePalestrante, novoTemaPalestra);
+		editarEndereco = new Endereco(ruaEndereco, bairroEndereco, numeroEndereco);
+		
 		if(procurarEvento != null) {
 			procurarEvento.setNome(novoEvento);
+			procurarEvento.setDescricao(novaDescricao);
+			procurarEvento.setPalestrante(editarPalestrante);
+			procurarEvento.setLocalizacao(editarEndereco);
 			return true;
 		}
 		return false;
@@ -39,7 +60,17 @@ public class ControladorEvento {
 	public void listarEvento() {
 		for (Evento eventos : eventoExistente) {
 			if(eventos != null) {
-				System.out.println(eventos);
+				System.out.println("-----------------------------------------");
+				System.out.format("%dº Curso:\n", contadora);
+				System.out.println("ID do evento: " + eventos.getID());
+				System.out.println("Nome do evento: " + eventos.getNome());
+				System.out.println("Nome do palestrante: " + eventos.getPalestrante().getNome());
+				System.out.println("Tema da palestra: " + eventos.getPalestrante().getTemaPalestra());
+				System.out.println("Descrição do evento: " + eventos.getDescricao());
+				System.out.println("Organizadores: " + eventos.getOrganizadores());
+				System.out.println("Data do evento: " + eventos.getData());
+				System.out.println("Localização do evento: " + eventos.getLocalizacao());
+				contadora++;
 			}
 			break;
 		}
@@ -68,11 +99,10 @@ public class ControladorEvento {
 						eventoExistente[j] = null;
 					}
 				}
-				this.qntEvento--;
+				this.quantidadeEvento--;
 				return true;
 			}
 		}
 		return false;
 	}
-
 }

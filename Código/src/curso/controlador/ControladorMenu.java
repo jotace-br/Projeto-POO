@@ -8,23 +8,23 @@ import curso.modelo.Palestrante;
 import curso.modelo.Professor;
 
 public class ControladorMenu {
+	//atributos do controlador de menu
 	Scanner inputOpcao = new Scanner(System.in);
 	Scanner input = new Scanner(System.in);
 
+	//instanciações
 	ControladorCurso controladorCurso = new ControladorCurso(0);
 	ControladorEvento controladorEvento = new ControladorEvento(0);
 	Curso curso;
 
+	//metódos
 	public int exibirMenuPrincipal() {
 		System.out.println("-- Menu principal --");
 		System.out.println("1º Opção: Ir ao menu de opções dos cursos. [DESENVOLVEDOR]");
 		System.out.println("2º Opção: Ir ao menu de opções dos eventos. [DESENVOLVEDOR]");
-		System.out.println("3º Opção: Participar de um curso.");
-		System.out.println("4º Opção: Participar de um evento.");
-		//mais opções no futuro...
-		System.out.println("5º Opção: Sair.");
+		System.out.println("3º Opção: Sair.");
 		System.out.println();
-		System.out.print("Digite a opção desejada:");
+		System.out.print("Digite a opção desejada: ");
 		return inputOpcao.nextInt();
 	}
 
@@ -38,7 +38,7 @@ public class ControladorMenu {
 		System.out.println("6º Opção: Listar todos os cursos.");
 		System.out.println("7º Opção: Sair.");
 		System.out.println();
-		System.out.print("Digite a opção desejada:");
+		System.out.print("Digite a opção desejada: ");
 		return inputOpcao.nextInt();
 	}
 
@@ -75,7 +75,8 @@ public class ControladorMenu {
 			System.out.print("Digite a disciplina do curso: ");
 			String disciplinaCurso = input.nextLine();
 
-			Professor professor = new Professor(nomeProfessor, rgProfessor, telefoneProfessor, disciplinaProfessor);
+			Professor professor = new Professor(nomeProfessor, rgProfessor, 
+											    telefoneProfessor, disciplinaProfessor);
 			curso = new Curso(idCurso, nomeCurso, professor, descricaoCurso, disciplinaCurso);
 			controladorCurso.adicionarCurso(curso);
 			return true;
@@ -87,18 +88,40 @@ public class ControladorMenu {
 
 	public boolean editarCurso() {
 		if(!controladorCurso.existeCurso()){
-			System.out.println("Não há cursos disponíveis para editar.");
+			System.out.println("Não há cursos disponí­veis para editar.");
 		} else {
 			try {
 				System.out.println("-- Cursos disponíveis --");
 				controladorCurso.listarCurso();
 				System.out.println("------------------------");
-				System.out.print("Digite o nome do curso que deseja editar: ");
-				String buscarCurso = input.nextLine();
 
-				System.out.print("Digite o nome do novo curso: ");
-				String novoCurso = input.nextLine();
-				controladorCurso.editarCurso(buscarCurso, novoCurso);
+				System.out.print("Digite o ID do curso que deseja editar: ");
+				String buscarIdCurso = input.nextLine();
+
+				System.out.print("Edite o nome do novo curso: ");
+				String novoNomeCurso = input.nextLine();
+				
+				System.out.print("Edite a descricão do curso:");
+				String novoDescricaoCurso = input.nextLine();
+				
+				System.out.print("Edite o nome do professor do curso: ");
+				String novoNomeProfessor = input.nextLine();
+
+				System.out.print("Edite nome do RG do professor: ");
+				String novoRgProfessor = input.nextLine();
+
+				System.out.print("Edite nome do telefone do professor: ");
+				String novoTelefoneProfessor = input.nextLine();
+
+				System.out.print("Edite nome da disciplina que o professor leciona: ");
+				String novoDisciplinaProfessor = input.nextLine();
+
+				System.out.print("Edite a disciplina do curso:");
+				String novoDisciplinaCurso = input.nextLine();
+				
+				controladorCurso.editarCurso(buscarIdCurso, novoNomeCurso, novoDescricaoCurso,
+						novoNomeProfessor, novoRgProfessor, novoTelefoneProfessor,
+						novoDisciplinaProfessor, novoDisciplinaCurso);
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -107,9 +130,10 @@ public class ControladorMenu {
 		return false;
 	}
 
+
 	public boolean removerCurso() {
 		try {
-			System.out.println("Digite o nome do curso que deseja remover: ");
+			System.out.println("Digite o ID do curso que deseja remover: ");
 			String curso = input.nextLine();
 			controladorCurso.removerCurso(curso);
 			return true;
@@ -144,7 +168,7 @@ public class ControladorMenu {
 		System.out.println("6º Opção: Listar todos os eventos.");
 		System.out.println("7º Opção: Sair.");
 		System.out.println();
-		System.out.print("Digite a opção desejada:");
+		System.out.print("Digite a opção desejada: ");
 		return inputOpcao.nextInt();
 	}
 
@@ -195,10 +219,14 @@ public class ControladorMenu {
 			System.out.print("Digite o número do local do evento: ");
 			Long numeroEnderecoEvento = input.nextLong();
 
-			Palestrante palestrante = new Palestrante(nomePalestrante, rgPalestrante, telefonePalestrante, temaPalestra);
-			Endereco endereco = new Endereco(cepEnderecoEvento, ruaEnderecoEvento, numeroEnderecoEvento);
-			Evento evento = new Evento(idEvento, nomeEvento, palestrante, descricaoEvento, organizadores, dataEvento, endereco);
-			controladorEvento.adicionarEvento(evento);
+			Palestrante editarPalestrante = new Palestrante(nomePalestrante, rgPalestrante, 
+														  telefonePalestrante, temaPalestra);
+			Endereco editarEndereco = new Endereco(cepEnderecoEvento, ruaEnderecoEvento, 
+												 		  numeroEnderecoEvento);
+			Evento editarEvento = new Evento(idEvento, nomeEvento, editarPalestrante, 
+										   				  descricaoEvento, organizadores, 
+										   				  dataEvento, editarEndereco);
+			controladorEvento.adicionarEvento(editarEvento);
 			return true;
 
 		} catch (Exception e) {
@@ -214,12 +242,41 @@ public class ControladorMenu {
 				System.out.println("-- Eventos disponíveis --");
 				controladorEvento.listarEvento();
 				System.out.println("------------------------");
-				System.out.print("Digite o nome do curso que deseja editar: ");
-				String buscarEvento = input.nextLine();
 
-				System.out.print("Digite o nome do novo curso: ");
-				String novoEvento = input.nextLine();
-				controladorEvento.editarEvento(buscarEvento, novoEvento);
+				System.out.print("Digite o ID do evento que deseja editar: ");
+				String buscarIdEvento = input.nextLine();
+
+				System.out.print("Edite o nome do novo evento: ");
+				String novoNomeEvento = input.nextLine();
+
+				System.out.print("Edite a descrição do evento: ");
+				String novaDescricao = input.nextLine();
+
+				System.out.print("Edite o nome do palestrante do evento: ");
+				String novoNomePalestrante = input.nextLine();
+
+				System.out.print("Edite o RG do palestrante: ");
+				String novoRgPalestrante = input.nextLine();
+
+				System.out.print("Edite o telefone do palestrante: ");
+				String novoTelefonePalestrante = input.nextLine();
+
+				System.out.print("Edite o tema da palestra: ");
+				String novoTemaPalestra = input.nextLine();
+
+				System.out.print("Edite o local do evento: ");
+				String ruaEndereco = input.nextLine();
+
+				System.out.print("Edite o bairro do local do evento: ");
+				String bairroEndereco = input.nextLine();
+
+				System.out.print("Edite o numero do local do evento: ");
+				Long numeroEndereco = input.nextLong();
+
+
+				controladorEvento.editarEvento(buscarIdEvento, novoNomeEvento, novaDescricao,
+						novoNomePalestrante, novoRgPalestrante, novoTelefonePalestrante, 
+						novoTemaPalestra,ruaEndereco, bairroEndereco, numeroEndereco);
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -227,6 +284,7 @@ public class ControladorMenu {
 		}
 		return false;
 	}
+
 
 	public boolean removerEvento() {
 		try {
@@ -254,25 +312,4 @@ public class ControladorMenu {
 	public void listarEvento() {
 		controladorEvento.listarEvento();
 	}
-
-	public void participarCurso() {
-		controladorCurso.listarCurso();
-		System.out.print("Qual ID do curso que você deseja participar?: ");
-		String participar = input.nextLine();
-
-		if(controladorCurso.buscarCurso(participar) != null) {
-			System.out.println("Digite seu nome: ");
-			String aluno = input.nextLine();
-			
-			curso.setNome(aluno);
-			curso.adicionarAluno((curso.getNome()));
-			System.out.println(curso.getListaNomeDosAlunos());
-		}
-	}
-	
-	public void listarAlunosCadastrados() {
-		controladorCurso.listarAlunosCadastrados();
-	}
-
-
 }

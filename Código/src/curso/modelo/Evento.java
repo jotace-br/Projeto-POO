@@ -1,7 +1,8 @@
 package curso.modelo;
 
 public class Evento {
-    private String id;
+	//atributos do evento
+    private String ID;
     private String nome;
     private Palestrante palestrante;
     private String descricao;
@@ -9,10 +10,10 @@ public class Evento {
     private String data;
     private Endereco localizacao;
     
-	public Evento(String id, String nome, Palestrante palestrante, String descricao, String organizadores, String data,
+    //construtor do evento
+	public Evento(String ID, String nome, Palestrante palestrante, String descricao, String organizadores, String data,
 			Endereco localizacao) {
-		super();
-		this.id = id;
+		this.ID = ID;
 		this.nome = nome;
 		this.palestrante = palestrante;
 		this.descricao = descricao;
@@ -20,13 +21,10 @@ public class Evento {
 		this.data = data;
 		this.localizacao = localizacao;
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	
+	//getters e setters
+	public String getID() {
+		return ID;
 	}
 
 	public String getNome() {
@@ -47,10 +45,6 @@ public class Evento {
 
 	public String getDescricao() {
 		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public String getOrganizadores() {
@@ -76,5 +70,14 @@ public class Evento {
 	public void setLocalizacao(Endereco localizacao) {
 		this.localizacao = localizacao;
 	}
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
     
 }

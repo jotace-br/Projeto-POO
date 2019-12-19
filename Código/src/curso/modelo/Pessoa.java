@@ -1,17 +1,19 @@
 package curso.modelo;
 
 public class Pessoa {
+	//atributos de pessoa
 	private String nome;
-	//private Endereco endereco;
 	private String rg;
 	private String telefone;
 	
+	//construtor de pessoa
 	public Pessoa(String nome, String rg, String telefone) {
-		super();
 		this.nome = nome;
 		this.rg = rg;
 		this.telefone = telefone;
 	}
+	
+	//getters e setters
 	public String getNome() {
 		return nome;
 	}
