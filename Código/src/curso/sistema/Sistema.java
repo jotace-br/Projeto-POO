@@ -24,8 +24,9 @@ public class Sistema {
 						case 1:
 							try {
 								menuPrincipal.adicionarLimiteCursos();
-								System.out.format("\n Quantidade definida com sucesso!\n");
+								System.out.format("Quantidade definida com sucesso!\n");
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 								break;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
@@ -37,6 +38,7 @@ public class Sistema {
 							try {
 								menuPrincipal.adicionarCursos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 								break;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
@@ -48,6 +50,7 @@ public class Sistema {
 							try {
 								menuPrincipal.editarCursos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 								break;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
@@ -59,6 +62,7 @@ public class Sistema {
 							try {
 								menuPrincipal.removerCursos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 								break;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
@@ -69,6 +73,7 @@ public class Sistema {
 							try {
 								menuPrincipal.buscarCursos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 								break;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
@@ -80,6 +85,7 @@ public class Sistema {
 							try {
 								menuPrincipal.listarCursos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 								break;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
@@ -91,16 +97,18 @@ public class Sistema {
 							try {
 								menuPrincipal.voltarAoMenuPrincipal();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 								break;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
-								System.out.format("Veja mais em: \n%s", e);
+								System.out.format("Veja mais em: \n%s\n", e);
 								menuPrincipal.deslogarNoSistema();
 							}
 							break;
 						default:
 							opcaoSelecionadaMenuDeCursos = 0;
 							menuPrincipal.deslogarNoSistema();
+							opcaoSelecionadaMenuPrincipal = 0;
 							System.out.println();
 							break;
 						}
@@ -115,8 +123,9 @@ public class Sistema {
 						case 1:
 							try {
 								menuPrincipal.adicionarLimiteEventos();
-								System.out.format("\n Quantidade definida com sucesso!\n");
+								System.out.format("Quantidade definida com sucesso!\n");
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
 								System.out.format("Veja mais em: \n%s", e);
@@ -127,6 +136,7 @@ public class Sistema {
 							try {
 								menuPrincipal.adicionarEventos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
 								System.out.format("Veja mais em: \n%s", e);
@@ -137,6 +147,7 @@ public class Sistema {
 							try {
 								menuPrincipal.editarEventos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
 								System.out.format("Veja mais em: \n%s", e);
@@ -147,15 +158,18 @@ public class Sistema {
 							try {
 								menuPrincipal.removerEventos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
 								System.out.format("Veja mais em: \n%s", e);
 								menuPrincipal.deslogarNoSistema();
 							}
+							break;
 						case 5:
 							try {
 								menuPrincipal.buscarEventos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
 								System.out.format("Veja mais em: \n%s", e);
@@ -166,6 +180,7 @@ public class Sistema {
 							try {
 								menuPrincipal.listarEventos();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
 								System.out.format("Veja mais em: \n%s", e);
@@ -176,6 +191,7 @@ public class Sistema {
 							try {
 								menuPrincipal.voltarAoMenuPrincipal();
 								menuPrincipal.deslogarNoSistema();
+								opcaoSelecionadaMenuPrincipal = 0;
 							} catch (Exception e) {
 								System.err.println("Um erro inesperado aconteceu.");
 								System.out.format("Veja mais em: \n%s", e);
@@ -185,6 +201,7 @@ public class Sistema {
 						default:
 							opcaoSelecionadaMenuDeEventos = 0;
 							menuPrincipal.deslogarNoSistema();
+							opcaoSelecionadaMenuPrincipal = 0;
 							System.out.println();
 							break;
 						}
@@ -194,6 +211,7 @@ public class Sistema {
 					break;
 				case 3:
 					menuPrincipal.sairDoPrograma();
+					opcaoSelecionadaMenuPrincipal = 0;
 				default:
 					break;
 				}

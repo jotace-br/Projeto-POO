@@ -5,24 +5,24 @@ import curso.modelo.Professor;
 public class ControladorCurso {
 	//atributos do controlador do curso
 	Curso[] cursoExistente;
-	private int qntCurso;
+	private int quantidadeCurso;
 	private int contadora;
-	
+
 	//instanciação
 	Professor editarProfessor;
 
 	//construtor do controlador do curso
 	public ControladorCurso(int capacidade){
 		this.cursoExistente = new Curso[capacidade];
-		this.qntCurso = 0;
+		this.quantidadeCurso = 0;
 		this.contadora = 1;
 	}
 
 	//métodos do controlador do curso
 	public boolean adicionarCurso(Curso cursos) {
-		if(cursos != null && qntCurso < cursoExistente.length) {
-			cursoExistente[qntCurso] = cursos;
-			qntCurso++;
+		if(cursos != null && quantidadeCurso < cursoExistente.length) {
+			cursoExistente[quantidadeCurso] = cursos;
+			quantidadeCurso++;
 			return true;
 		}
 		return false;
@@ -30,22 +30,32 @@ public class ControladorCurso {
 
 	public Curso buscarCurso(String buscarCurso) {
 		for(Curso procurarCurso: cursoExistente) {
+			System.out.println("-----------------------------------------");
 			if(procurarCurso != null && procurarCurso.getNome().equals(buscarCurso)) {
 				return procurarCurso;
 			}
 		}
-		return null;
+		return null;	
 	}
+	
+	/*public void exibirCurso(Curso curso) {
+		System.out.println("Nome do curso: " + curso.getNome());
+		System.out.println("Descrição do curso: " + curso.getDescricao());
+		System.out.println("Professor do curso: " + curso.getProfessor().getNome());
+		System.out.println("Descrição do curso: " + curso.getDescricao());
+		System.out.println("Disciplina do curso: " + curso.getDisciplina());
+	}
+	*/
 
 	public boolean editarCurso(String buscarIdCurso, String novoNomeCurso, String novoDescricaoCurso,
 							   String novoNomeProfessor, String novoRgProfessor, 
 							   String novoTelefoneProfessor, String novoDisciplinaProfessor, 
 							   String novoDisciplinaCurso) {
-		
+
 		Curso procurarCurso = this.buscarCurso(buscarIdCurso);
 		editarProfessor = new Professor(novoNomeProfessor, novoRgProfessor, 
-										novoTelefoneProfessor, novoDisciplinaProfessor);
-		
+				novoTelefoneProfessor, novoDisciplinaProfessor);
+
 		if(procurarCurso != null) {
 			procurarCurso.setNome(novoNomeCurso);
 			procurarCurso.setDescricao(novoDescricaoCurso);
@@ -68,7 +78,7 @@ public class ControladorCurso {
 				System.out.println("Descrição do curso: " + cursos.getDescricao());
 				System.out.println("Disciplina: " + cursos.getDisciplina());
 			} else {
-				System.out.println("Nenhum curso encontrado.");
+				System.out.println("Curso não encontrado/Listado todos os cursos.");
 			}
 		}
 	}
@@ -96,7 +106,7 @@ public class ControladorCurso {
 						cursoExistente[j] = null;
 					}
 				}
-				this.qntCurso--;
+				this.quantidadeCurso--;
 				return true;
 			}
 		}
@@ -113,11 +123,11 @@ public class ControladorCurso {
 	}
 
 	public int getQntCurso() {
-		return qntCurso;
+		return quantidadeCurso;
 	}
 
 	public void setQntCurso(int qntCurso) {
-		this.qntCurso = qntCurso;
+		this.quantidadeCurso = qntCurso;
 	}
 
 }

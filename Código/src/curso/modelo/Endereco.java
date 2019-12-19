@@ -4,13 +4,13 @@ public class Endereco {
 	//atributos do endereço
 	private String cep;
 	private String rua;
-	private long numero;
+	private String numero;
 	
 	//construtor do endereço
-	public Endereco(String cep, String rua, long numero) {
+	public Endereco(String cep, String rua, String numeroEndereco) {
 		this.cep = cep;
 		this.rua = rua;
-		this.numero = numero;
+		this.numero = numeroEndereco;
 	}
 	
 	//getters e setters
@@ -30,11 +30,11 @@ public class Endereco {
 		this.rua = rua;
 	}
 
-	public long getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 	

@@ -1,0 +1,11 @@
+editarEvento com bug
+
+
+adicionarEvento ok
+adicionarQntEvento ok
+editarEvento bug_________
+removerEvento ok
+buscarEvento - localização não mostra corretamente (falta get) CORRIGIDO
+listarEvento ok
+
+SISTEMA ENTRANDO EM OPÇÃO ERRADA APOS 1 OPERAÇAÕ

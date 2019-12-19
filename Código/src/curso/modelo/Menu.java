@@ -7,7 +7,7 @@ import curso.controlador.ControladorMenu;
 public class Menu {
 	private Scanner EntradaDeDados = new Scanner(System.in);
 	private Scanner OpcaoSair = new Scanner(System.in);
-	private String opcaoFazerNovamente = "N";
+	private String opcaoFazerNovamente;
 
 	//criação da variável usuário e senha para poder logar no sistema
 	private String usuarioUsuario;
@@ -47,7 +47,7 @@ public class Menu {
 	public void adicionarCursos() {
 		do {
 			if(controladorMenu.adicionarCurso()) {
-				System.out.format("\nCurso adicionado!\n");
+				System.out.format("Curso adicionado!\n");
 				System.out.print("Deseja adicionar outro curso? [S/N]: ");
 				opcaoFazerNovamente = EntradaDeDados.next();
 			} else {
@@ -74,7 +74,7 @@ public class Menu {
 
 	public void buscarCursos() {
 		if(controladorMenu.buscarCurso()) {
-			System.out.println("Curso encontrados.");
+			System.out.println("Curso(s) encontrado(s).");
 		} else {
 			System.out.println("Nenhum curso encontrado.");
 		}
@@ -99,12 +99,10 @@ public class Menu {
 	public void adicionarEventos() {
 		do {
 			if(controladorMenu.adicionarEvento()) {
-				System.out.format("\nEvento adicionado!\n");
+				System.out.format("Evento adicionado!\n");
 				System.out.print("Deseja adicionar outro evento? [S/N]: ");
-				opcaoFazerNovamente = EntradaDeDados.nextLine();
-				System.out.println(EntradaDeDados.nextLine());
+				opcaoFazerNovamente = EntradaDeDados.next();
 			} else {
-				System.out.format("\nNão foi possível adicionar o evento.\n");
 				opcaoFazerNovamente = "N";
 			}
 		} while(opcaoFazerNovamente.equalsIgnoreCase("S"));
@@ -146,6 +144,7 @@ public class Menu {
 			System.out.println("Fechando o programa...");
 			System.exit(0);
 		} else if (sairdoProgramaDecisao.equalsIgnoreCase("N")){
+			sairdoProgramaDecisao = "N";
 			System.out.println();
 			controladorMenu.exibirMenuPrincipal();
 		} else {

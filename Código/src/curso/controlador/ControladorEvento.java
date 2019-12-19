@@ -23,6 +23,8 @@ public class ControladorEvento {
 	//métodos do controlador de evento
 	public boolean adicionarEvento(Evento eventos) {
 		if(eventos != null && quantidadeEvento < eventoExistente.length) {
+			eventoExistente[quantidadeEvento] = eventos;
+			quantidadeEvento++;
 			return true;
 		}
 		return false;
@@ -38,20 +40,24 @@ public class ControladorEvento {
 	}
 
 	public boolean editarEvento(String buscarIdEvento, String novoEvento, String novaDescricao,
-							    String novoNomePalestrante, String novoRgPalestrante,
-							    String novoTelefonePalestrante, String novoTemaPalestra, 
-							    String ruaEndereco,String bairroEndereco, Long numeroEndereco) {
+							    String novoOrganizadoresEvento, String novoNomePalestrante, 
+							    String novoRgPalestrante, String novoTelefonePalestrante, 
+							    String novoTemaPalestra,  String ruaEndereco, String bairroEndereco,
+							    String numeroEndereco, String dataEvento) {
 		
 		Evento procurarEvento = this.buscarEvento(buscarIdEvento);
 		editarPalestrante = new Palestrante(novoNomePalestrante, novoRgPalestrante,
 										  novoTelefonePalestrante, novoTemaPalestra);
 		editarEndereco = new Endereco(ruaEndereco, bairroEndereco, numeroEndereco);
 		
+		//ERRO: ELE VEM PARA AQUI E NO FINAL DE TUDO, NÃO EDITA.
 		if(procurarEvento != null) {
 			procurarEvento.setNome(novoEvento);
 			procurarEvento.setDescricao(novaDescricao);
 			procurarEvento.setPalestrante(editarPalestrante);
+			procurarEvento.setOrganizadores(novoOrganizadoresEvento);
 			procurarEvento.setLocalizacao(editarEndereco);
+			procurarEvento.setData(dataEvento);
 			return true;
 		}
 		return false;
@@ -61,7 +67,7 @@ public class ControladorEvento {
 		for (Evento eventos : eventoExistente) {
 			if(eventos != null) {
 				System.out.println("-----------------------------------------");
-				System.out.format("%dº Curso:\n", contadora);
+				System.out.format("%dº Evento:\n", contadora++);
 				System.out.println("ID do evento: " + eventos.getID());
 				System.out.println("Nome do evento: " + eventos.getNome());
 				System.out.println("Nome do palestrante: " + eventos.getPalestrante().getNome());
@@ -69,10 +75,10 @@ public class ControladorEvento {
 				System.out.println("Descrição do evento: " + eventos.getDescricao());
 				System.out.println("Organizadores: " + eventos.getOrganizadores());
 				System.out.println("Data do evento: " + eventos.getData());
-				System.out.println("Localização do evento: " + eventos.getLocalizacao());
-				contadora++;
+				System.out.println("Localização do evento: " + eventos.getLocalizacao().getRua());
+			} else {
+				System.out.println("Curso não encontrado/Listado todos os cursos.");
 			}
-			break;
 		}
 	}
 	
@@ -105,4 +111,25 @@ public class ControladorEvento {
 		}
 		return false;
 	}
+
+	//getters e setters
+	public int getQuantidadeEvento() {
+		return quantidadeEvento;
+	}
+
+	public void setQuantidadeEvento(int quantidadeEvento) {
+		this.quantidadeEvento = quantidadeEvento;
+	}
+
+	public Evento[] getEventoExistente() {
+		return eventoExistente;
+	}
+
+	public void setEventoExistente(Evento[] eventoExistente) {
+		this.eventoExistente = eventoExistente;
+	}
+	
+	
+	
+	
 }

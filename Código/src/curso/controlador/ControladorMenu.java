@@ -16,6 +16,10 @@ public class ControladorMenu {
 	ControladorCurso controladorCurso = new ControladorCurso(0);
 	ControladorEvento controladorEvento = new ControladorEvento(0);
 	Curso curso;
+	Professor professor;
+	Palestrante palestrante;
+	Endereco endereco;
+	Evento evento;
 
 	//metódos
 	public int exibirMenuPrincipal() {
@@ -75,7 +79,7 @@ public class ControladorMenu {
 			System.out.print("Digite a disciplina do curso: ");
 			String disciplinaCurso = input.nextLine();
 
-			Professor professor = new Professor(nomeProfessor, rgProfessor, 
+			professor = new Professor(nomeProfessor, rgProfessor, 
 											    telefoneProfessor, disciplinaProfessor);
 			curso = new Curso(idCurso, nomeCurso, professor, descricaoCurso, disciplinaCurso);
 			controladorCurso.adicionarCurso(curso);
@@ -133,7 +137,7 @@ public class ControladorMenu {
 
 	public boolean removerCurso() {
 		try {
-			System.out.println("Digite o ID do curso que deseja remover: ");
+			System.out.print("Digite o ID do curso que deseja remover: ");
 			String curso = input.nextLine();
 			controladorCurso.removerCurso(curso);
 			return true;
@@ -178,7 +182,7 @@ public class ControladorMenu {
 	}
 
 	public boolean adicionarEvento() {
-		try {
+		if(controladorEvento.getQuantidadeEvento() < controladorEvento.getEventoExistente().length) {
 			System.out.print("Digite o ID do evento: ");
 			String idEvento = input.nextLine();
 
@@ -217,21 +221,21 @@ public class ControladorMenu {
 			String ruaEnderecoEvento = input.nextLine();
 
 			System.out.print("Digite o número do local do evento: ");
-			Long numeroEnderecoEvento = input.nextLong();
+			String numeroEnderecoEvento = input.nextLine();
 
-			Palestrante editarPalestrante = new Palestrante(nomePalestrante, rgPalestrante, 
+			palestrante = new Palestrante(nomePalestrante, rgPalestrante, 
 														  telefonePalestrante, temaPalestra);
-			Endereco editarEndereco = new Endereco(cepEnderecoEvento, ruaEnderecoEvento, 
+			endereco = new Endereco(cepEnderecoEvento, ruaEnderecoEvento, 
 												 		  numeroEnderecoEvento);
-			Evento editarEvento = new Evento(idEvento, nomeEvento, editarPalestrante, 
+			evento = new Evento(idEvento, nomeEvento, palestrante, 
 										   				  descricaoEvento, organizadores, 
-										   				  dataEvento, editarEndereco);
-			controladorEvento.adicionarEvento(editarEvento);
+										   				  dataEvento, endereco);
+			controladorEvento.adicionarEvento(evento);
 			return true;
-
-		} catch (Exception e) {
-			return false;
+		} else {
+			System.out.println("Não foi possível adicionar um curso devido ao limite de cursos estabelecido.");
 		}
+		return false;
 	}
 
 	public boolean editarEvento() {
@@ -246,11 +250,14 @@ public class ControladorMenu {
 				System.out.print("Digite o ID do evento que deseja editar: ");
 				String buscarIdEvento = input.nextLine();
 
-				System.out.print("Edite o nome do novo evento: ");
+				System.out.print("Edite o nome do evento: ");
 				String novoNomeEvento = input.nextLine();
 
 				System.out.print("Edite a descrição do evento: ");
 				String novaDescricao = input.nextLine();
+				
+				System.out.print("Edite o nome dos organizadores: ");
+				String novoOrganizadoresEvento = input.nextLine();
 
 				System.out.print("Edite o nome do palestrante do evento: ");
 				String novoNomePalestrante = input.nextLine();
@@ -271,12 +278,15 @@ public class ControladorMenu {
 				String bairroEndereco = input.nextLine();
 
 				System.out.print("Edite o numero do local do evento: ");
-				Long numeroEndereco = input.nextLong();
-
+				String numeroEndereco = input.nextLine();
+				
+				System.out.print("Edite a data do local do evento: ");
+				String dataEvento = input.nextLine();
 
 				controladorEvento.editarEvento(buscarIdEvento, novoNomeEvento, novaDescricao,
-						novoNomePalestrante, novoRgPalestrante, novoTelefonePalestrante, 
-						novoTemaPalestra,ruaEndereco, bairroEndereco, numeroEndereco);
+						novoOrganizadoresEvento, novoNomePalestrante, novoRgPalestrante,
+						novoTelefonePalestrante, novoTemaPalestra,ruaEndereco, bairroEndereco,
+						numeroEndereco, dataEvento);
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -285,10 +295,9 @@ public class ControladorMenu {
 		return false;
 	}
 
-
 	public boolean removerEvento() {
 		try {
-			System.out.println("Digite o nome do curso que deseja remover: ");
+			System.out.print("Digite o nome do evento que deseja remover: ");
 			String evento = input.nextLine();
 			controladorEvento.removerEvento(evento);
 			return true;
@@ -299,7 +308,7 @@ public class ControladorMenu {
 
 	public boolean buscarEvento() {
 		try {
-			System.out.println("Digite o nome do curso para buscá-lo: ");
+			System.out.println("Digite o nome do evento para buscá-lo: ");
 			String buscarEvento = input.nextLine();
 			controladorEvento.buscarEvento(buscarEvento);
 			return true;
