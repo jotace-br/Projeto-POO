@@ -1,13 +1,11 @@
 package curso.modelo;
 public class Curso {
-	//atributos do curso
 	private String ID;
 	private String nome;
 	private Professor professor;
 	private String descricao;
 	private String disciplina;
-	
-	//construtor do curso
+
 	public Curso(String ID, String nome, Professor professor, String descricao, String disciplina) {
 		this.ID = ID;
 		this.nome = nome;
@@ -16,13 +14,12 @@ public class Curso {
 		this.disciplina = disciplina;
 	}
 
-	//getters e setters
 	public String getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public String getNome() {
@@ -56,5 +53,5 @@ public class Curso {
 	public void setDisciplina(String disciplina) {
 		this.disciplina = disciplina;
 	}
-		
+
 }

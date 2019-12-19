@@ -8,20 +8,17 @@ import curso.modelo.Palestrante;
 import curso.modelo.Professor;
 
 public class ControladorMenu {
-	//atributos do controlador de menu
-	Scanner inputOpcao = new Scanner(System.in);
-	Scanner input = new Scanner(System.in);
+	private Scanner inputOpcao = new Scanner(System.in);
+	private Scanner input = new Scanner(System.in);
 
-	//instanciações
-	ControladorCurso controladorCurso = new ControladorCurso(0);
-	ControladorEvento controladorEvento = new ControladorEvento(0);
-	Curso curso;
-	Professor professor;
-	Palestrante palestrante;
-	Endereco endereco;
-	Evento evento;
+	private ControladorCurso controladorCurso = new ControladorCurso(0);
+	private ControladorEvento controladorEvento = new ControladorEvento(0);
+	private Curso curso;
+	private Professor professor;
+	private Palestrante palestrante;
+	private Endereco endereco;
+	private Evento evento;
 
-	//metódos
 	public int exibirMenuPrincipal() {
 		System.out.println("-- Menu principal --");
 		System.out.println("1º Opção: Ir ao menu de opções dos cursos. [DESENVOLVEDOR]");
@@ -134,7 +131,6 @@ public class ControladorMenu {
 		return false;
 	}
 
-
 	public boolean removerCurso() {
 		try {
 			System.out.print("Digite o ID do curso que deseja remover: ");
@@ -151,6 +147,7 @@ public class ControladorMenu {
 			System.out.println("Digite o nome do curso para buscá-lo: ");
 			String buscarCurso = input.nextLine();
 			controladorCurso.buscarCurso(buscarCurso);
+			//controladorCurso.exibirCurso(buscarCurso);
 			return true;
 		} catch (Exception e) {
 			System.out.println("Não foi possível achar o curso.");

@@ -1,46 +1,41 @@
 package curso.modelo;
 
 import java.util.Scanner;
-
 import curso.controlador.ControladorMenu;
 
 public class Menu {
-	private Scanner EntradaDeDados = new Scanner(System.in);
-	private Scanner OpcaoSair = new Scanner(System.in);
+	private Scanner entradaDeDados = new Scanner(System.in);
+	private Scanner opcaoSair = new Scanner(System.in);
 	private String opcaoFazerNovamente;
 
-	//criação da variável usuário e senha para poder logar no sistema
 	private String usuarioUsuario;
 	private String senhaUsuario;
 
-	//instanciações
-	ControladorMenu controladorMenu = new ControladorMenu();
-	Usuario admin = new Usuario();
+	private ControladorMenu controladorMenu = new ControladorMenu();
+	private Usuario administrador = new Usuario();
 
-	//métodos para o administrador
 	public boolean logarNoSistema() {
-		if (!admin.adminEstaLogado()) {
+		if (!administrador.adminEstaLogado()) {
 			System.out.print("Digite o login: ");
-			usuarioUsuario = EntradaDeDados.next();
-			admin.verificarUsuario(usuarioUsuario);
+			usuarioUsuario = entradaDeDados.next();
+			administrador.verificarUsuario(usuarioUsuario);
 
 			System.out.print("Digite a senha: ");
-			senhaUsuario = EntradaDeDados.next();
-			admin.verificarSenha(senhaUsuario);
-			return admin.adminEstaLogado();
+			senhaUsuario = entradaDeDados.next();
+			administrador.verificarSenha(senhaUsuario);
+			return administrador.adminEstaLogado();
 		} else {
-			return !admin.adminEstaLogado();
+			return !administrador.adminEstaLogado();
 		}
 	}
 
 	public void deslogarNoSistema() {
-		admin.deslogarAdmin();
+		administrador.deslogarAdmin();
 	}
 
-	//métodos para o menu de cursos
 	public void adicionarLimiteCursos() {
 		System.out.print("Digite a quantidade limite de cursos: ");
-		int quantidadeDeCursos = EntradaDeDados.nextInt();
+		int quantidadeDeCursos = entradaDeDados.nextInt();
 		controladorMenu.adicionarQuantidadeMenuCursos(quantidadeDeCursos);
 	}
 
@@ -49,7 +44,7 @@ public class Menu {
 			if(controladorMenu.adicionarCurso()) {
 				System.out.format("Curso adicionado!\n");
 				System.out.print("Deseja adicionar outro curso? [S/N]: ");
-				opcaoFazerNovamente = EntradaDeDados.next();
+				opcaoFazerNovamente = entradaDeDados.next();
 			} else {
 				opcaoFazerNovamente = "N";
 			}
@@ -86,13 +81,12 @@ public class Menu {
 
 	public void voltarAoMenuPrincipal() {
 		System.out.println("Voltando para o menu principal...");
-		admin.deslogarAdmin();
+		administrador.deslogarAdmin();
 	}
 
-	//métodos para o menu de eventos
 	public void adicionarLimiteEventos() {
 		System.out.print("Digite a quantidade limite de eventos: ");
-		int quantidadeDeEventos = EntradaDeDados.nextInt();
+		int quantidadeDeEventos = entradaDeDados.nextInt();
 		controladorMenu.adicionarQuantidadeMenuEventos(quantidadeDeEventos);
 	}
 
@@ -101,7 +95,7 @@ public class Menu {
 			if(controladorMenu.adicionarEvento()) {
 				System.out.format("Evento adicionado!\n");
 				System.out.print("Deseja adicionar outro evento? [S/N]: ");
-				opcaoFazerNovamente = EntradaDeDados.next();
+				opcaoFazerNovamente = entradaDeDados.next();
 			} else {
 				opcaoFazerNovamente = "N";
 			}
@@ -136,10 +130,9 @@ public class Menu {
 		controladorMenu.listarEvento();
 	}
 
-	//métodos para o sair
 	public void sairDoPrograma() {
 		System.out.print("Você deseja realmente sair do programa? [S/N]: ");
-		String sairdoProgramaDecisao = OpcaoSair.next();
+		String sairdoProgramaDecisao = opcaoSair.next();
 		if (sairdoProgramaDecisao.equalsIgnoreCase("S")) {
 			System.out.println("Fechando o programa...");
 			System.exit(0);

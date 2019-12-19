@@ -1,7 +1,6 @@
 package curso.modelo;
 
 public class Evento {
-	//atributos do evento
     private String ID;
     private String nome;
     private Palestrante palestrante;
@@ -10,9 +9,8 @@ public class Evento {
     private String data;
     private Endereco localizacao;
     
-    //construtor do evento
-	public Evento(String ID, String nome, Palestrante palestrante, String descricao, String organizadores, String data,
-			Endereco localizacao) {
+	public Evento(String ID, String nome, Palestrante palestrante, String descricao,
+				  String organizadores, String data, Endereco localizacao) {
 		this.ID = ID;
 		this.nome = nome;
 		this.palestrante = palestrante;
@@ -22,7 +20,6 @@ public class Evento {
 		this.localizacao = localizacao;
 	}
 	
-	//getters e setters
 	public String getID() {
 		return ID;
 	}

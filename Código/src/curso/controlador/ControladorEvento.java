@@ -4,23 +4,19 @@ import curso.modelo.Evento;
 import curso.modelo.Palestrante;
 
 public class ControladorEvento {
-	//atributos do controlador de evento
 	private Evento[] eventoExistente;
 	private int quantidadeEvento;
 	private int contadora;
 	
-	//instanciação
-	Endereco editarEndereco;
-	Palestrante editarPalestrante;
+	private Endereco endereco;
+	private Palestrante palestrante;
 
-	//construtor do controlador de evento
 	public ControladorEvento(int capacidade) {
 		this.eventoExistente = new Evento[capacidade];
 		this.quantidadeEvento = 0;
 		this.contadora = 1;
 	}
 
-	//métodos do controlador de evento
 	public boolean adicionarEvento(Evento eventos) {
 		if(eventos != null && quantidadeEvento < eventoExistente.length) {
 			eventoExistente[quantidadeEvento] = eventos;
@@ -46,17 +42,16 @@ public class ControladorEvento {
 							    String numeroEndereco, String dataEvento) {
 		
 		Evento procurarEvento = this.buscarEvento(buscarIdEvento);
-		editarPalestrante = new Palestrante(novoNomePalestrante, novoRgPalestrante,
+		palestrante = new Palestrante(novoNomePalestrante, novoRgPalestrante,
 										  novoTelefonePalestrante, novoTemaPalestra);
-		editarEndereco = new Endereco(ruaEndereco, bairroEndereco, numeroEndereco);
+		endereco = new Endereco(ruaEndereco, bairroEndereco, numeroEndereco);
 		
-		//ERRO: ELE VEM PARA AQUI E NO FINAL DE TUDO, NÃO EDITA.
 		if(procurarEvento != null) {
 			procurarEvento.setNome(novoEvento);
 			procurarEvento.setDescricao(novaDescricao);
-			procurarEvento.setPalestrante(editarPalestrante);
+			procurarEvento.setPalestrante(palestrante);
 			procurarEvento.setOrganizadores(novoOrganizadoresEvento);
-			procurarEvento.setLocalizacao(editarEndereco);
+			procurarEvento.setLocalizacao(endereco);
 			procurarEvento.setData(dataEvento);
 			return true;
 		}
@@ -112,24 +107,11 @@ public class ControladorEvento {
 		return false;
 	}
 
-	//getters e setters
 	public int getQuantidadeEvento() {
 		return quantidadeEvento;
 	}
 
-	public void setQuantidadeEvento(int quantidadeEvento) {
-		this.quantidadeEvento = quantidadeEvento;
-	}
-
 	public Evento[] getEventoExistente() {
 		return eventoExistente;
-	}
-
-	public void setEventoExistente(Evento[] eventoExistente) {
-		this.eventoExistente = eventoExistente;
-	}
-	
-	
-	
-	
+	}	
 }
